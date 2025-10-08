@@ -1,10 +1,10 @@
 
 <nav class="navbar mx-3 mt-3">
   <ul class="nav mb-2">
-    <li class="nav-item pointer"><a class="nav-link" routerLink="/">Accueil</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink="home">Accueil</a></li>
     <li class="nav-item"><a class="nav-link" routerLink="/">Favoris</a></li>
     <li class="nav-item"><a class="nav-link" routerLink="/">Films</a></li>
     <li class="nav-item"><a class="nav-link" routerLink="/">Séries</a></li>
   </ul>
-  <p class="btn btn-primary">Se connecter</p>
+  <button (click)="goToSignup()" class="btn btn-primary">Se connecter</button>
 </nav>
