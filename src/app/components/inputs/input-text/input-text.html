@@ -1,0 +1,34 @@
+<div [ngClass]="inline ? 'd-flex align-items-center gap-2' : ''">
+    @if (displayLabel) {
+        <label 
+            [for]="name" 
+            [ngClass]="labelClass"
+            style="white-space: nowrap;"
+        >
+            {{ label }} {{ isRequired && displayLabel ? ' *' : '' }}
+        </label>
+    }
+
+    <aside class="input-group">
+        <input
+        type="text"
+        [name]="name"
+        [placeholder]="placeholder"
+        [ngClass]="inputClass"
+        [value]="content"
+        [disabled]="disabled"
+        (input)="onInput($event)"
+        />
+        @if (symbol) {
+            <span class="input-group-text">{{ symbol }}</span>
+        }
+        
+    </aside>
+</div>
+
+@if (validation?.dirty && validation?.invalid) {
+    <small class="text-danger">
+        {{ validation?.errors?.[0]?.message }}
+    </small>
+}
+

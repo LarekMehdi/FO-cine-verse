@@ -14,8 +14,8 @@ export class Navbar {
 
   constructor(private router: Router) {}
 
-  goToSignup() {
-    this.router.navigate(['/signup'])
+  goToSignin() {
+    this.router.navigate(['/signin'])
   }
 
 }

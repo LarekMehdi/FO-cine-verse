@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Title } from '../components/title/title';
+import { Title } from '../components/shared/title/title';
 
 
 @Component({
