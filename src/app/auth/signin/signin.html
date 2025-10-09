@@ -2,18 +2,30 @@
     <app-title content="Se connecter"/>
 
     <form (submit)="signin($event)">
-        <app-input-text 
-            label="Email" 
-            [formControl]="emailControl"
-            [isRequired]="true"
-        />
+        <aside class="form-group">
+            <section class="mb-3 col-md-3">
+                <app-input-text
+                    label="Email"
+                    [value]="emailControl.value"
+                    [isRequired]="true"
+                    (valueChange)="onEmailChange($event)"
+                    [showError]="emailControl.touched && emailControl.invalid"
+                    [errorMessage]="getErrorMessage(emailControl)"
+                />
+            </section>
 
-        <app-input-text 
-            label="Mot de passe" 
-            [formControl]="passwordControl"
-            [isRequired]="true"
-        />
+            <section class="mb-3 col-md-3">
+                <app-input-text
+                    label="Mot de passe"
+                    [value]="passwordControl.value"
+                    [isRequired]="true"
+                    (valueChange)="onPasswordChange($event)"
+                    [showError]="passwordControl.touched && passwordControl.invalid"
+                    [errorMessage]="getErrorMessage(passwordControl)"
+                />
+            </section>
+        </aside>
 
-        <button type="submit" class="btn btn-primary">Se connecter</button>
+        <button type="submit" class="btn btn-primary mt-3">Se connecter</button>
     </form>
 </article>

@@ -14,21 +14,19 @@
             type="text"
             [name]="name"
             [placeholder]="placeholder"
-            [ngClass]="inputClass"
+            [ngClass]="`form-control ${inputClass}`"
             [disabled]="disabled"
             [value]="value"
-            (input)="setValue($event.target.value)"
+            (input)="onInput($event)"
         />
         @if (symbol) {
             <span class="input-group-text">{{ symbol }}</span>
         }
+     
         
     </aside>
+    @if (showError && errorMessage) {
+        <small class="text-danger">{{ errorMessage }}</small>
+    }
 </div>
-
-@if (hasError) {
-    <small class="text-danger">
-        {{ formControl?.errors }}
-    </small>
-}
 

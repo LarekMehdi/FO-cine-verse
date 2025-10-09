@@ -25,11 +25,28 @@ export class Signin {
   }
 
   get emailControl(): FormControl {
-  return this.signinForm.get('email') as FormControl;
-}
+    return this.signinForm.get('email') as FormControl;
+  }
 
   get passwordControl(): FormControl {
     return this.signinForm.get('password') as FormControl;
+  }
+
+  getErrorMessage(control: FormControl) {
+    if (control.hasError('required')) return 'Champ requis';
+    if (control.hasError('email')) return 'Email invalide';
+    if (control.hasError('minlength')) return `Minimum ${control.errors!['minlength'].requiredLength} caractères`;
+    return null;
+  }
+
+  onEmailChange(value: string) {
+    this.emailControl.setValue(value);
+    this.emailControl.markAsDirty();
+  }
+
+  onPasswordChange(value: string) {
+    this.passwordControl.setValue(value);
+    this.passwordControl.markAsDirty();
   }
 
   signin(event: Event) {
@@ -37,6 +54,7 @@ export class Signin {
 
     if (this.signinForm.invalid) {
       this.signinForm.markAllAsTouched();
+      console.log('Form values:', this.signinForm.value);
       return;
     }
 
