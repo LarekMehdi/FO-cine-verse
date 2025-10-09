@@ -16,6 +16,8 @@
             [placeholder]="placeholder"
             [ngClass]="inputClass"
             [disabled]="disabled"
+            [value]="value"
+            (input)="setValue($event.target.value)"
         />
         @if (symbol) {
             <span class="input-group-text">{{ symbol }}</span>

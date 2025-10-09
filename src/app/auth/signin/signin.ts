@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Title } from '../../components/shared/title/title';
 import { InputText } from "../../components/inputs/input-text/input-text";
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
   imports: [
     Title,
-    InputText
+    InputText,
+    ReactiveFormsModule
 ],
   templateUrl: './signin.html',
   styleUrl: './signin.css'

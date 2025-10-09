@@ -5,13 +5,14 @@
         <app-input-text 
             label="Email" 
             [formControl]="emailControl"
+            [isRequired]="true"
         />
 
         <app-input-text 
             label="Mot de passe" 
             [formControl]="passwordControl"
+            [isRequired]="true"
         />
-
 
         <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>
