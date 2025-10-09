@@ -11,13 +11,11 @@
 
     <aside class="input-group">
         <input
-        type="text"
-        [name]="name"
-        [placeholder]="placeholder"
-        [ngClass]="inputClass"
-        [value]="content"
-        [disabled]="disabled"
-        (input)="onInput($event)"
+            type="text"
+            [name]="name"
+            [placeholder]="placeholder"
+            [ngClass]="inputClass"
+            [disabled]="disabled"
         />
         @if (symbol) {
             <span class="input-group-text">{{ symbol }}</span>
@@ -26,9 +24,9 @@
     </aside>
 </div>
 
-@if (validation?.dirty && validation?.invalid) {
+@if (hasError) {
     <small class="text-danger">
-        {{ validation?.errors?.[0]?.message }}
+        {{ formControl?.errors }}
     </small>
 }
 

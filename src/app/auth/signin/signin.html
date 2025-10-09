@@ -1,13 +1,18 @@
 <article>
     <app-title content="Se connecter"/>
 
-    <section>
-        <app-input-text
-            [(content)]="test"
-            label="Nom d'utilisateur"
-            placeholder="Entrez votre nom"
-            [isRequired]="true"
-            symbol="@"
+    <form (submit)="signin($event)">
+        <app-input-text 
+            label="Email" 
+            [formControl]="emailControl"
         />
-    </section>
+
+        <app-input-text 
+            label="Mot de passe" 
+            [formControl]="passwordControl"
+        />
+
+
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
 </article>
