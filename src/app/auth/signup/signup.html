@@ -1,3 +1,47 @@
 <article>
     <app-title content="Créer un compte"/>
+
+    <form (submit)="signup($event)">
+        <aside class="form-group">
+            <section class="mb-3 col-md-3">
+                <app-input-text
+                    label="Email"
+                    [value]="emailControl.value"
+                    [isRequired]="true"
+                    (valueChange)="onEmailChange($event)"
+                    [showError]="emailControl.touched && emailControl.invalid"
+                    [errorMessage]="getErrorMessage(emailControl)"
+                />
+            </section>
+
+            <section class="mb-3 col-md-3">
+                <app-input-text
+                    label="Mot de passe"
+                    [value]="passwordControl.value"
+                    [isRequired]="true"
+                    (valueChange)="onPasswordChange($event)"
+                    [showError]="passwordControl.touched && passwordControl.invalid"
+                    [errorMessage]="getErrorMessage(passwordControl)"
+                />
+            </section>
+
+            <section class="mb-3 col-md-3">
+                <app-input-text
+                    label="Répéter le mot de passe"
+                    [value]="repeatPasswordControl.value"
+                    [isRequired]="true"
+                    (valueChange)="onRepeatPasswordChange($event)"
+                    [showError]="repeatPasswordControl.touched && repeatPasswordControl.invalid"
+                    [errorMessage]="getErrorMessage(repeatPasswordControl)"
+                />
+            </section>
+
+        </aside>
+
+        <button type="submit" class="btn btn-primary mt-3">Se connecter</button>
+    </form>
+    
+    <section class="mt-5">
+        <small>Pas encore de compte? Créez en un <a routerLink="/signup">ici</a></small>
+    </section>
 </article>
