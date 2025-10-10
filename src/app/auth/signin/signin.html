@@ -1,4 +1,4 @@
-<article>
+<article class="signin-wrapper">
     <app-title content="Se connecter"/>
 
     <form (submit)="signin($event)">
@@ -32,4 +32,6 @@
     <section class="mt-5">
         <small>Pas encore de compte? Créez en un <a routerLink="/signup">ici</a></small>
     </section>
+    
+    <img [src]=logoPath alt="Logo CineVerse" class="logo-right">
 </article>

@@ -1,0 +1,15 @@
+.signin-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.logo-right {
+  position: absolute;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  height: auto;
+  opacity: 0.9;
+  pointer-events: none;
+}

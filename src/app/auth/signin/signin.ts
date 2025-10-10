@@ -17,6 +17,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Signin {
 
+  logoPath = 'assets/logo.png';
   signinForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
