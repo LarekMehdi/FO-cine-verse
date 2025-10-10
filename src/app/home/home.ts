@@ -11,5 +11,5 @@ import { Title } from '../components/shared/title/title';
   styleUrl: './home.css'
 })
 export class Home {
-  protected title: string = 'testtt'
+  logoPath = 'assets/logo.png';
 }
