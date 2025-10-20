@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Title } from "../../components/shared/title/title";
 import { InputText } from '../../components/inputs/input-text/input-text';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthApi } from '../../api/auth.api';
+import { signupInterface } from '../../interfaces/auth/auth.interface';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +20,7 @@ export class Signup {
   logoPath = 'assets/logo.png';
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signupForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -93,6 +96,17 @@ export class Signup {
     }
 
     console.log('Form values:', this.signupForm.value);
+
+    const data: signupInterface = {
+      email: '',
+      pseudo: '',
+      password: ''
+    }
+
+    this.authService.signup(data).subscribe({
+      next: (res) => console.log('ici ', res),
+      error: (err) => console.error('la' , err)
+    });
 
 
   }
