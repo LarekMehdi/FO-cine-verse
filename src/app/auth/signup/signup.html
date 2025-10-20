@@ -3,6 +3,18 @@
 
     <form (submit)="signup($event)">
         <aside class="form-group">
+
+            <section class="mb-3 col-md-3">
+                <app-input-text
+                    label="Pseudo"
+                    [value]="pseudoControl.value"
+                    [isRequired]="true"
+                    (valueChange)="onPseudoChange($event)"
+                    [showError]="pseudoControl.touched && pseudoControl.invalid"
+                    [errorMessage]="getErrorMessage(pseudoControl)"
+                />
+            </section>
+
             <section class="mb-3 col-md-3">
                 <app-input-text
                     label="Email"

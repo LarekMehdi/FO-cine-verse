@@ -22,12 +22,17 @@ export class Signup {
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signupForm = this.fb.group({
+      pseudo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       repeatPassword: ['', [Validators.required, Validators.minLength(6)]],
     }, {
       validators: this.passwordsMismatchValidator
     });
+  }
+
+  get pseudoControl(): FormControl {
+    return this.signupForm.get('pseudo') as FormControl;
   }
 
   get emailControl(): FormControl {
@@ -77,6 +82,11 @@ export class Signup {
     this.emailControl.markAsDirty();
   }
 
+  onPseudoChange(value: string) {
+    this.pseudoControl.setValue(value);
+    this.pseudoControl.markAsDirty();
+  }
+
   onPasswordChange(value: string) {
     this.passwordControl.setValue(value);
     this.passwordControl.markAsDirty();
@@ -98,9 +108,9 @@ export class Signup {
     console.log('Form values:', this.signupForm.value);
 
     const data: signupInterface = {
-      email: '',
-      pseudo: '',
-      password: ''
+      email: this.emailControl.value,
+      pseudo: this.pseudoControl.value,
+      password: this.passwordControl.value,
     }
 
     this.authService.signup(data).subscribe({
