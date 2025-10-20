@@ -10,6 +10,6 @@ export class AuthApi {
     /** SIGNUP **/
 
     signup(signupData: signupInterface) {
-        return this.apiService.post('signup', signupData);
+        return this.apiService.post('auth/signup', signupData);
     }
 }
