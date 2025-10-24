@@ -3,6 +3,8 @@ import { Title } from '../../components/shared/title/title';
 import { InputText } from "../../components/inputs/input-text/input-text";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { SigninInterface } from '../../interfaces/auth/auth.interface';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -20,15 +22,15 @@ export class Signin {
   logoPath = 'assets/logo.png';
   signinForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signinForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      pseudo: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  get emailControl(): FormControl {
-    return this.signinForm.get('email') as FormControl;
+  get pseudoControl(): FormControl {
+    return this.signinForm.get('pseudo') as FormControl;
   }
 
   get passwordControl(): FormControl {
@@ -42,9 +44,9 @@ export class Signin {
     return null;
   }
 
-  onEmailChange(value: string) {
-    this.emailControl.setValue(value);
-    this.emailControl.markAsDirty();
+  onPseudoChange(value: string) {
+    this.pseudoControl.setValue(value);
+    this.pseudoControl.markAsDirty();
   }
 
   onPasswordChange(value: string) {
@@ -61,6 +63,16 @@ export class Signin {
     }
 
     console.log('Form values:', this.signinForm.value);
+
+    const data: SigninInterface = {
+      pseudo: this.pseudoControl.value,
+      password: this.passwordControl.value,
+    }
+
+    this.authService.signin(data).subscribe({
+      next: (res) => console.log('ici ', res),
+      error: (err) => console.error('la' , err)
+    });
 
 
   }

@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from "../../components/shared/title/title";
 import { InputText } from '../../components/inputs/input-text/input-text';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthApi } from '../../api/auth.api';
-import { signupInterface } from '../../interfaces/auth/auth.interface';
+import { SignupInterface } from '../../interfaces/auth/auth.interface';
 import { AuthService } from '../../service/auth.service';
 
 @Component({
@@ -107,7 +106,7 @@ export class Signup {
 
     console.log('Form values:', this.signupForm.value);
 
-    const data: signupInterface = {
+    const data: SignupInterface = {
       email: this.emailControl.value,
       pseudo: this.pseudoControl.value,
       password: this.passwordControl.value,

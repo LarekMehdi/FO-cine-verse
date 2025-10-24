@@ -5,12 +5,12 @@
         <aside class="form-group">
             <section class="mb-3 col-md-3">
                 <app-input-text
-                    label="Email"
-                    [value]="emailControl.value"
+                    label="Pseudo"
+                    [value]="pseudoControl.value"
                     [isRequired]="true"
-                    (valueChange)="onEmailChange($event)"
-                    [showError]="emailControl.touched && emailControl.invalid"
-                    [errorMessage]="getErrorMessage(emailControl)"
+                    (valueChange)="onPseudoChange($event)"
+                    [showError]="pseudoControl.touched && pseudoControl.invalid"
+                    [errorMessage]="getErrorMessage(pseudoControl)"
                 />
             </section>
 
