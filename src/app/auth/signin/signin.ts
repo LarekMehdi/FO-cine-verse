@@ -75,8 +75,7 @@ export class Signin {
     this.authService.signin(data).subscribe({
       next: (res: AuthInterface) => {
         console.log('ici ', res);
-        const a: AuthInterface = res;
-        //this.authStore.login(res);
+        this.authStore.login(res);
       },
       error: (err) => console.error('la' , err)
     });
