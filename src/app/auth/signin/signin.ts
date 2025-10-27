@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Title } from '../../components/shared/title/title';
 import { InputText } from "../../components/inputs/input-text/input-text";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { SigninInterface } from '../../interfaces/auth/auth.interface';
+import { AuthInterface, SigninInterface } from '../../interfaces/auth/auth.interface';
 import { AuthService } from '../../service/auth.service';
+import { AuthStore } from '../../store/auth.store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
@@ -19,8 +21,9 @@ import { AuthService } from '../../service/auth.service';
 })
 export class Signin {
 
-  logoPath = 'assets/logo.png';
+  logoPath: string = 'assets/logo.png';
   signinForm: FormGroup;
+  authStore = inject(AuthStore);
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signinForm = this.fb.group({
@@ -70,7 +73,11 @@ export class Signin {
     }
 
     this.authService.signin(data).subscribe({
-      next: (res) => console.log('ici ', res),
+      next: (res: AuthInterface) => {
+        console.log('ici ', res);
+        const a: AuthInterface = res;
+        //this.authStore.login(res);
+      },
       error: (err) => console.error('la' , err)
     });
 

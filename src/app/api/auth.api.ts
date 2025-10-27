@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { SigninInterface, SignupInterface } from "../interfaces/auth/auth.interface";
+import { AuthInterface, SigninInterface, SignupInterface } from "../interfaces/auth/auth.interface";
 import { ApiService } from "../service/api.service";
+import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class AuthApi {
@@ -15,7 +16,7 @@ export class AuthApi {
 
     /** SIGNIN **/
 
-    signin(signinData: SigninInterface) {
-        return this.apiService.post(`auth/signin`, signinData)
+    signin(signinData: SigninInterface): Observable<AuthInterface> {
+        return this.apiService.post<AuthInterface>(`auth/signin`, signinData)
     }
 }
