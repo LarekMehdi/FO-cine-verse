@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Title } from '../../components/shared/title/title';
 import { InputText } from "../../components/inputs/input-text/input-text";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthInterface, SigninInterface } from '../../interfaces/auth/auth.interface';
 import { AuthService } from '../../service/auth.service';
 import { AuthStore } from '../../store/auth.store';
@@ -25,7 +25,7 @@ export class Signin {
   signinForm: FormGroup;
   authStore = inject(AuthStore);
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.signinForm = this.fb.group({
       pseudo: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -76,8 +76,9 @@ export class Signin {
       next: (res: AuthInterface) => {
         console.log('ici ', res);
         this.authStore.login(res);
+        this.router.navigate(['/home']);
       },
-      error: (err) => console.error('la' , err)
+      error: (err) => console.error('erreur => ' , err)
     });
 
 

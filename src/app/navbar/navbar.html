@@ -6,5 +6,12 @@
     <li class="nav-item"><a class="nav-link" routerLink="/">Films</a></li>
     <li class="nav-item"><a class="nav-link" routerLink="/">Séries</a></li>
   </ul>
-  <button (click)="goToSignin()" class="btn btn-primary">Se connecter</button>
+
+  @if (isLoggedIn()) {
+    <button (click)="loggout()" class="btn btn-danger">Se déconnecter</button>
+  }
+  @else {
+    <button (click)="goToSignin()" class="btn btn-primary">Se connecter</button>
+  }
+  
 </nav>
