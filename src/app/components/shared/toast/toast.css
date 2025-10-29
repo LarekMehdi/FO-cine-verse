@@ -1,9 +1,19 @@
 .toast {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    background: #333;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: #333;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+  opacity: 0; 
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-20px);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }
