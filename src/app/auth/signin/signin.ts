@@ -7,6 +7,8 @@ import { AuthInterface, SigninInterface } from '../../interfaces/auth/auth.inter
 import { AuthService } from '../../service/auth.service';
 import { AuthStore } from '../../store/auth.store';
 import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastService } from '../../service/toast.service';
 
 @Component({
   selector: 'app-signin',
@@ -25,7 +27,12 @@ export class Signin {
   signinForm: FormGroup;
   authStore = inject(AuthStore);
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService, 
+    private router: Router,
+    private toastService: ToastService,
+  ) {
     this.signinForm = this.fb.group({
       pseudo: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -65,8 +72,6 @@ export class Signin {
       return;
     }
 
-    console.log('Form values:', this.signinForm.value);
-
     const data: SigninInterface = {
       pseudo: this.pseudoControl.value,
       password: this.passwordControl.value,
@@ -74,14 +79,16 @@ export class Signin {
 
     this.authService.signin(data).subscribe({
       next: (res: AuthInterface) => {
-        console.log('ici ', res);
         this.authStore.login(res);
         this.router.navigate(['/home']);
       },
-      error: (err) => console.error('erreur => ' , err)
+      error: (err) => {
+        if (err instanceof HttpErrorResponse && err.status === 401) {
+          this.toastService.error('Identifiant incorrect');
+        } else {
+          this.toastService.defaultError();
+        }
+      }
     });
-
-
   }
-
 }

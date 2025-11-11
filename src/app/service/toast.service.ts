@@ -20,6 +20,10 @@ export class ToastService {
         this.show(message);
     }
 
+    public defaultError() {
+        this.show('Une erreur est survenue');
+    }
+
     public info(message: string) {
         this.show(message);
     }
