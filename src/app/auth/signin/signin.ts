@@ -6,9 +6,9 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthInterface, SigninInterface } from '../../interfaces/auth/auth.interface';
 import { AuthService } from '../../service/auth.service';
 import { AuthStore } from '../../store/auth.store';
-import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from '../../service/toast.service';
+import { InputPassword } from "../../components/inputs/input-password/input-password";
 
 @Component({
   selector: 'app-signin',
@@ -17,6 +17,8 @@ import { ToastService } from '../../service/toast.service';
     InputText,
     ReactiveFormsModule,
     RouterLink,
+    InputPassword,
+    InputPassword,
 ],
   templateUrl: './signin.html',
   styleUrl: './signin.css'

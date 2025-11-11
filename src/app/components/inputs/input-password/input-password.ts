@@ -1,19 +1,17 @@
-
 import { NgClass } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-input-text',
+  selector: 'app-input-password',
   imports: [
     NgClass,
     ReactiveFormsModule,
   ],
-  templateUrl: './input-text.html',
-  styleUrl: './input-text.css'
+  templateUrl: './input-password.html',
+  styleUrl: './input-password.css'
 })
-export class InputText {
-
+export class InputPassword {
   @Input() label?: string;
   @Input() name?: string;
   @Input() placeholder: string = ''
@@ -36,5 +34,4 @@ export class InputText {
   }
   onChange = (value: any) => {};
   onTouched = () => {};
-
 }
