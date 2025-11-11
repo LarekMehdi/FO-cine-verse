@@ -4,13 +4,17 @@ import { InputText } from '../../components/inputs/input-text/input-text';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignupInterface } from '../../interfaces/auth/auth.interface';
 import { AuthService } from '../../service/auth.service';
+import { InputPassword } from "../../components/inputs/input-password/input-password";
+import { ToastService } from '../../service/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   imports: [
     Title,
     InputText,
-  ],
+    InputPassword
+],
   templateUrl: './signup.html',
   styleUrl: './signup.css'
 })
@@ -19,7 +23,12 @@ export class Signup {
   logoPath = 'assets/logo.png';
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService,
+    private toastService: ToastService,
+    private router: Router,
+  ) {
     this.signupForm = this.fb.group({
       pseudo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
@@ -104,8 +113,6 @@ export class Signup {
       return;
     }
 
-    console.log('Form values:', this.signupForm.value);
-
     const data: SignupInterface = {
       email: this.emailControl.value,
       pseudo: this.pseudoControl.value,
@@ -113,8 +120,13 @@ export class Signup {
     }
 
     this.authService.signup(data).subscribe({
-      next: (res) => console.log('ici ', res),
-      error: (err) => console.error('la' , err)
+      next: (res) => {
+        this.toastService.success('Compte créé avec succés');
+        this.router.navigate(['/signin']);
+      },
+      error: (err) => {
+        this.toastService.defaultError();
+      } 
     });
 
 
