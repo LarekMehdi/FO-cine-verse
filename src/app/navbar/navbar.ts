@@ -26,7 +26,7 @@ export class Navbar {
 
   loggout() {
     this.authStore.logout();
-    this.toastService.success('test');
+    this.toastService.info('Vous avez bien été déconnecté');
   }
 
 }
