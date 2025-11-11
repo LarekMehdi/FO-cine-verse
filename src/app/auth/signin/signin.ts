@@ -34,7 +34,7 @@ export class Signin {
     private toastService: ToastService,
   ) {
     this.signinForm = this.fb.group({
-      pseudo: ['', [Validators.required]],
+      pseudo: ['', [Validators.required, Validators.minLength(2)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -49,7 +49,6 @@ export class Signin {
 
   getErrorMessage(control: FormControl) {
     if (control.hasError('required')) return 'Champ requis';
-    if (control.hasError('email')) return 'Email invalide';
     if (control.hasError('minlength')) return `Minimum ${control.errors!['minlength'].requiredLength} caractères`;
     return null;
   }
