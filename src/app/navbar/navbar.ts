@@ -21,12 +21,13 @@ export class Navbar {
   readonly isLoggedIn = computed(() => this.authStore.isAuthenticated());
 
   goToSignin() {
-    this.router.navigate(['/signin'])
+    this.router.navigate(['/signin']);
   }
 
   loggout() {
     this.authStore.logout();
     this.toastService.info('Vous avez bien été déconnecté');
+    this.router.navigate(['/home']);
   }
 
 }
